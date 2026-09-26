@@ -1,0 +1,4 @@
+*.png
+*.qoder.site
+node_modules/
+.env*
