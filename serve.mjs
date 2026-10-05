@@ -1,6 +1,8 @@
 import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import { extname, join, normalize, resolve, sep } from "node:path";
+import { handleApiRequest } from "./backend/api/router.mjs";
+import { sendText } from "./backend/core/http.mjs";
 
 const ROOT = resolve("web");
 const PORT = Number(process.env.PORT || 4173);
@@ -25,6 +27,12 @@ const TYPES = {
 
 createServer(async (req, res) => {
   try {
+    if (req.url?.startsWith("/api/")) {
+      const handled = await handleApiRequest(req, res);
+      if (!handled) sendText(res, 404, "Not found");
+      return;
+    }
+
     const url = decodeURIComponent(new URL(req.url, `http://${HOST}`).pathname);
     let rel = normalize(url).replace(/^([/\\])+/, "");
     if (rel.startsWith("..")) rel = "";
