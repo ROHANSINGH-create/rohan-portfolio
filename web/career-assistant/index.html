@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Career Guidance Assistant — Milestone 1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="layout">
+    <header class="header">
+      <p class="badge">Career Guidance Assistant · MVP V1 · Milestone 1</p>
+      <h1>Profile + Career Goal Setup</h1>
+      <p>Start by completing your profile, then choose a target career direction.</p>
+    </header>
+
+    <section class="card">
+      <h2>Your Profile</h2>
+      <p class="subtle">Profile Completeness</p>
+      <div class="progress-wrap" aria-label="Profile completeness">
+        <div id="profileBar" class="progress-bar"></div>
+      </div>
+      <p id="profileCompletenessLabel" class="strong">0%</p>
+      <p id="profileMissing" class="subtle"></p>
+
+      <form id="profileForm" class="form-grid">
+        <label>Name<input name="name" type="text" /></label>
+        <label>Education<input name="education" type="text" /></label>
+        <label>Degree<input name="degree" type="text" /></label>
+        <label>Current semester/year<input name="currentStage" type="text" /></label>
+        <label>Experience level
+          <select name="experienceLevel">
+            <option value="">Select</option>
+            <option>Beginner</option>
+            <option>Basic</option>
+            <option>Intermediate</option>
+            <option>Advanced</option>
+          </select>
+        </label>
+        <label>Weekly learning hours<input name="weeklyLearningHours" type="number" min="0" /></label>
+        <label>Technical skills (comma separated)<textarea name="technicalSkills" rows="3"></textarea></label>
+        <label>Non-technical skills (comma separated)<textarea name="nonTechnicalSkills" rows="3"></textarea></label>
+        <label>Interests (comma separated)<textarea name="interests" rows="3"></textarea></label>
+        <label>Career interests (comma separated)<textarea name="careerInterests" rows="3"></textarea></label>
+        <label class="full">Previous experience<textarea name="previousExperience" rows="4"></textarea></label>
+        <div class="full actions">
+          <button type="submit">Save Profile</button>
+          <span id="profileStatus" class="status"></span>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Choose Career Goal</h2>
+      <label class="search">Search careers
+        <input id="careerSearch" type="search" placeholder="Search careers..." />
+      </label>
+      <div id="careerList" class="career-list"></div>
+      <p id="careerStatus" class="status"></p>
+    </section>
+
+    <section class="card">
+      <h2>Current Target Career</h2>
+      <div id="goalDetail" class="goal-empty">No career selected yet.</div>
+    </section>
+
+    <section class="card">
+      <h2>Quick Compare (2 Careers)</h2>
+      <div class="compare-grid">
+        <label>Career A<select id="compareA"></select></label>
+        <label>Career B<select id="compareB"></select></label>
+      </div>
+      <div id="compareResult" class="compare-result"></div>
+    </section>
+  </main>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
